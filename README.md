@@ -41,4 +41,6 @@ kubectl apply -f backend-deployment.yml
 kubectl apply -f frontend-deployment.yml
 3. Verificar o Status dos PodsAguarde até que todos os Pods estejam no estado Running e READY.Bashkubectl get pods
 kubectl get svc
+```
+
 🌐 Acesso à AplicaçãoUse as portas mapeadas no seu kind-config.yml para acessar a aplicação:ServiçoEndereço de AcessoFrontendhttp://localhost:5173Backend APIhttp://localhost:3000🛠️ Configuração de Conexão (Interna K8s)A comunicação interna entre os microsserviços é configurada da seguinte forma:Frontend acessa Backend: VITE_API_URL usa http://backend:3000.Backend acessa MongoDB: DATABASE_URL usa a porta correta do Service:mongodb://admin:admin123@mongo-svc:27018/Caravana?authSource=admin💡 Debugging e Acesso ao DBAcesso Externo ao MongoDB (Compass)Para acessar o banco de dados via MongoDB Compass, utilize a HostPort e as credenciais:URI de Conexão: mongodb://admin:admin123@localhost:27018/Caravana?authSource=admin🗑️ Limpeza (Destruindo o Cluster)Quando terminar de usar o ambiente, destrua o cluster Kind para liberar recursos:Bashkind delete cluster --name caravana
