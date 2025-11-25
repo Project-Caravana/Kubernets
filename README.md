@@ -33,7 +33,7 @@ O arquivo `kind-config.yml` configura o mapeamento de portas NodePort para porta
 kind create cluster --config kind-config.yml
 ```
 
-2. Aplicar os Manifestos do KubernetesAplique todos os arquivos de deployment na ordem recomendada (primeiro o banco, depois os serviços):
+### 2. Aplicar os Manifestos do KubernetesAplique todos os arquivos de deployment na ordem recomendada (primeiro o banco, depois os serviços):
 ```Bash
 # 1. Aplica o Deployment e Service do MongoDB
 kubectl apply -f mongo-deployment.yml
@@ -44,13 +44,13 @@ kubectl apply -f backend-deployment.yml
 # 3. Aplica o Deployment e Service do Frontend
 kubectl apply -f frontend-deployment.yml
 ```
-3. Verificar o Status dos PodsAguarde até que todos os Pods estejam no estado Running e READY.
+### 3. Verificar o Status dos PodsAguarde até que todos os Pods estejam no estado Running e READY.
 ```Bash
 kubectl get pods
 kubectl get svc
 ```
 
-🌐 Acesso à Aplicação
+### 🌐 Acesso à Aplicação
 Use as portas mapeadas no seu kind-config.yml para acessar a aplicação:
 
 | Serviço | Endereço de Acesso |
@@ -58,12 +58,14 @@ Use as portas mapeadas no seu kind-config.yml para acessar a aplicação:
 | Frontend | http://localhost:5173 |
 | Backend API | http://localhost:3000 |
 
-🛠️ Configuração de Conexão (Interna K8s)
+## 🛠️ Configuração de Conexão (Interna K8s)
 A comunicação interna entre os microsserviços é configurada da seguinte forma:
-Frontend acessa Backend: VITE_API_URL usa http://backend:3000.
-Backend acessa MongoDB: DATABASE_URL usa a porta correta do Service:
+**Frontend** acessa **Backend**: VITE_API_URL usa http://backend:3000.
+**Backend** acessa **MongoDB**: DATABASE_URL usa a porta correta do Service:
 mongodb://@mongo-svc:27018/Caravana
-💡 Debugging e Acesso ao DBAcesso Externo ao MongoDB (Compass)
+
+## 💡 Debugging e Acesso ao DBAcesso Externo ao MongoDB (Compass)
+
 Para acessar o banco de dados via MongoDB Compass, utilize a HostPort e as credenciais:URI de Conexão: mongodb://localhost:27018/Caravana
 🗑️ Limpeza (Destruindo o Cluster)
 Quando terminar de usar o ambiente, destrua o cluster Kind para liberar recursos:
