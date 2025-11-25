@@ -59,9 +59,9 @@ Use as portas mapeadas no seu kind-config.yml para acessar a aplicação:
 | Backend API | http://localhost:3000 |
 
 ## 🛠️ Configuração de Conexão (Interna K8s)
-A comunicação interna entre os microsserviços é configurada da seguinte forma:
-1. **Frontend** acessa **Backend**: VITE_API_URL usa http://backend:3000.
-2. **Backend** acessa **MongoDB**: DATABASE_URL usa a porta correta do Service:<br />
+A comunicação interna entre os microsserviços é configurada da seguinte forma:<br />
+**Frontend** acessa **Backend**: VITE_API_URL usa http://backend:3000.<br />
+**Backend** acessa **MongoDB**: DATABASE_URL usa a porta correta do Service:<br />
 mongodb://@mongo-svc:27018/Caravana
 
 ## 💡 Debugging e Acesso ao DBAcesso Externo ao MongoDB (Compass)
