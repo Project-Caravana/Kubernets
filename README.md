@@ -31,7 +31,11 @@ O arquivo `kind-config.yml` configura o mapeamento de portas NodePort para porta
 ```bash
 # Cria o cluster com as configurações de mapeamento de portas
 kind create cluster --config kind-config.yml
-2. Aplicar os Manifestos do KubernetesAplique todos os arquivos de deployment na ordem recomendada (primeiro o banco, depois os serviços):Bash# 1. Aplica o Deployment e Service do MongoDB
+```
+
+2. Aplicar os Manifestos do KubernetesAplique todos os arquivos de deployment na ordem recomendada (primeiro o banco, depois os serviços):
+```Bash
+# 1. Aplica o Deployment e Service do MongoDB
 kubectl apply -f mongo-deployment.yml
 
 # 2. Aplica o Deployment e Service do Backend
@@ -39,8 +43,30 @@ kubectl apply -f backend-deployment.yml
 
 # 3. Aplica o Deployment e Service do Frontend
 kubectl apply -f frontend-deployment.yml
-3. Verificar o Status dos PodsAguarde até que todos os Pods estejam no estado Running e READY.Bashkubectl get pods
+```
+3. Verificar o Status dos PodsAguarde até que todos os Pods estejam no estado Running e READY.
+```Bash
+kubectl get pods
 kubectl get svc
 ```
 
-🌐 Acesso à AplicaçãoUse as portas mapeadas no seu kind-config.yml para acessar a aplicação:ServiçoEndereço de AcessoFrontendhttp://localhost:5173Backend APIhttp://localhost:3000🛠️ Configuração de Conexão (Interna K8s)A comunicação interna entre os microsserviços é configurada da seguinte forma:Frontend acessa Backend: VITE_API_URL usa http://backend:3000.Backend acessa MongoDB: DATABASE_URL usa a porta correta do Service:mongodb://admin:admin123@mongo-svc:27018/Caravana?authSource=admin💡 Debugging e Acesso ao DBAcesso Externo ao MongoDB (Compass)Para acessar o banco de dados via MongoDB Compass, utilize a HostPort e as credenciais:URI de Conexão: mongodb://admin:admin123@localhost:27018/Caravana?authSource=admin🗑️ Limpeza (Destruindo o Cluster)Quando terminar de usar o ambiente, destrua o cluster Kind para liberar recursos:Bashkind delete cluster --name caravana
+🌐 Acesso à Aplicação
+Use as portas mapeadas no seu kind-config.yml para acessar a aplicação:
+
+| Serviço | Endereço de Acesso |
+| :---: | :---: |
+| Frontend | http://localhost:5173 |
+| Backend API | http://localhost:3000 |
+
+🛠️ Configuração de Conexão (Interna K8s)
+A comunicação interna entre os microsserviços é configurada da seguinte forma:
+Frontend acessa Backend: VITE_API_URL usa http://backend:3000.
+Backend acessa MongoDB: DATABASE_URL usa a porta correta do Service:
+mongodb://@mongo-svc:27018/Caravana
+💡 Debugging e Acesso ao DBAcesso Externo ao MongoDB (Compass)
+Para acessar o banco de dados via MongoDB Compass, utilize a HostPort e as credenciais:URI de Conexão: mongodb://localhost:27018/Caravana
+🗑️ Limpeza (Destruindo o Cluster)
+Quando terminar de usar o ambiente, destrua o cluster Kind para liberar recursos:
+```Bash
+kind delete cluster --name caravana
+```
