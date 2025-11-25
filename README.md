@@ -10,7 +10,7 @@ A aplicação é dividida em três microsserviços, com a seguinte configuraçã
 | :---: | :---: | :---: | :---: | :---: |
 | **Frontend** | `jhonatanmjesus/caravanadocker-frontend:latest` | 80 | 5173 | 30001 |
 | **Backend** | `jhonatanmjesus/caravanadocker-backend:latest` | 3000 | 3000 | 30000 |
-| **MongoDB** | `mongo:6` | 27018 | 27018 | 30002 |
+| **MongoDB** | `mongo:6` | 27017 | 27018 | 30002 |
 
 ## ⚙️ Pré-requisitos
 
