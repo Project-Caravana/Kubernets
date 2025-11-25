@@ -67,7 +67,7 @@ mongodb://@mongo-svc:27018/Caravana
 ## 💡 Debugging e Acesso ao DBAcesso Externo ao MongoDB (Compass)
 
 Para acessar o banco de dados via MongoDB Compass, utilize a HostPort e as credenciais:URI de Conexão: mongodb://localhost:27018/Caravana
-🗑️ Limpeza (Destruindo o Cluster)
+## 🗑️ Limpeza (Destruindo o Cluster)
 Quando terminar de usar o ambiente, destrua o cluster Kind para liberar recursos:
 ```Bash
 kind delete cluster --name caravana
